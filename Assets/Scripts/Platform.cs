@@ -7,32 +7,39 @@ using DG.Tweening;
 [RequireComponent(typeof(Rigidbody))]
 public class Platform : MonoBehaviour
 {
-    [Header("Components")]
+
     private Rigidbody rb;
     private Vector3 velocity;
-    [SerializeField] private float horMoveSpeed = 0f;
-    [SerializeField] private float verMoveSpeed = 0f;
+    private float horMoveSpeed = 0f;
+    private float verMoveSpeed = 0f;
 
-    [Header("Looping")]
-    public bool looping;
-
-    // using timer as a way to track when to shift
-    [SerializeField] private float loopDuration = 5f;
+    private bool looping;
     private float loopTimer;
-    [SerializeField] private float waitDuration = 2f;
-
-    [Header("Attribute")]
-    [SerializeField] private float forceBoost = 0f;
     private bool canMove;
 
-    [Header("Animation")]
-    [SerializeField] private float duration = 0.2f;
-    [SerializeField] private Ease ease = Ease.InOutBounce;
-    [SerializeField] private float yOffset = 0.2f;
+    [SerializeField] PlatformStats stats;
 
     private void Awake() 
     {
         rb = GetComponent<Rigidbody>();
+        InitializePlatform();
+    }
+
+    private void InitializePlatform()
+    {
+        InitializeStats();
+    }
+
+    private void InitializeStats()
+    {
+        horMoveSpeed = stats.XMoveSpeed;
+        verMoveSpeed = stats.YMoveSpeed;
+        // loopDuration = stats.LoopDuration;
+        // waitDuration = stats.WaitDuration;
+        // stats.ForceBoost = stats.ForceBoost;
+        // stats.Duration = stats.Duration;
+        // stats.Ease = stats.Ease;
+        // stats.YOffset = stats.YOffset;
     }
 
     void Start() 
@@ -59,14 +66,14 @@ public class Platform : MonoBehaviour
         {
             canMove = false;
             StartCoroutine(ShiftMoveDirectionWithWaitDelay());
-            loopTimer = loopDuration + waitDuration;
+            loopTimer = stats.LoopDuration + stats.WaitDuration;
         }
         loopTimer -= Time.deltaTime;
     }
 
     IEnumerator ShiftMoveDirectionWithWaitDelay()
     {
-        yield return new WaitForSeconds(waitDuration);
+        yield return new WaitForSeconds(stats.WaitDuration);
         ShiftAllMoveDirection();
         canMove = true;
     }
@@ -90,14 +97,13 @@ public class Platform : MonoBehaviour
             Destroy(gameObject);
         }
 
-
         if (other.gameObject.CompareTag("Player Ground Check") )
         {
             PlayerController controller = other.GetComponentInParent<PlayerController>();
             if (controller.isFalling)
             {
                 Rigidbody rigid = other.GetComponentInParent<Rigidbody>();
-                rigid.AddForce(Vector3.up * forceBoost, ForceMode.Impulse);
+                rigid.AddForce(Vector3.up * stats.ForceBoost, ForceMode.Impulse);
                 PlaySteppedAnim();
             }
         }
@@ -106,8 +112,8 @@ public class Platform : MonoBehaviour
     private void PlaySteppedAnim()
     {
         transform
-            .DOMoveY(yOffset, duration)
+            .DOMoveY(stats.YOffset, stats.Duration)
             .From(true)
-            .SetEase(ease).Play();
+            .SetEase(stats.Ease).Play();
     }
 }
