@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canTilt;
     public bool isFalling;
     private bool doubleJumpKeyHeld;
+    public PlayerStats jump;
 
     [Header("Movement")]
     [SerializeField] private float maxXVelocity = 10f;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start() 
     {
-        rb.freezeRotation = true;
+        FreezeRotation();
         LockCursor();
     }
 
@@ -89,6 +90,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             doubleJumpKeyHeld = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("SwitchMOde");
+            jumpForce = jump.primaryJump;
+            secJumpForce = jump.secondaryJump;
         }
     }
 
@@ -206,5 +214,10 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    private void FreezeRotation()
+    {
+        rb.freezeRotation = true;
     }
 }
