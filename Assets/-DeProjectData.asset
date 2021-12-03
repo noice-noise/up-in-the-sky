@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -349248422, guid: 145e4664d5df46c46b87637d50ceaa43, type: 3}
+  m_Name: -DeProjectData
+  m_EditorClassIdentifier: 
+  evidenceType: 0
+  customizedItems:
+  - guid: bb177fcc190d9f0448074fc63972a124
+    hColor: 4
+    icoType: 18
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+    customIcon: {fileID: 0}
+    customIconOffsetX: 2
+    customIconOffsetY: 2
+    customIconMaxSize: 16
