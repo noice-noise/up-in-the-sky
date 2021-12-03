@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canTilt;
     public bool isFalling;
     private bool doubleJumpKeyHeld;
-    public PlayerStats jump;
+    public PlayerStats normalJump;
+    public PlayerStats boostedJump;
+    public PlayerStats pimpJump;
 
     [Header("Movement")]
     [SerializeField] private float maxXVelocity = 10f;
@@ -92,11 +94,22 @@ public class PlayerController : MonoBehaviour
             doubleJumpKeyHeld = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            Debug.Log("SwitchMOde");
-            jumpForce = jump.primaryJump;
-            secJumpForce = jump.secondaryJump;
+            jumpForce = boostedJump.primaryJump;
+            secJumpForce = boostedJump.secondaryJump;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            jumpForce = normalJump.primaryJump;
+            secJumpForce = normalJump.secondaryJump;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            jumpForce = pimpJump.primaryJump;
+            secJumpForce = pimpJump.secondaryJump;
         }
     }
 
