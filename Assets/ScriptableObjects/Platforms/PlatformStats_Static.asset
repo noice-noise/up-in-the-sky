@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a56ed2355b3b48b69a97f69301862, type: 3}
   m_Name: PlatformStats_Static
   m_EditorClassIdentifier: 
+  x: 0.3
+  y: 1
+  z: 1
   xMoveSpeed: 0
   yMoveSpeed: 0
   forceBoost: 0
