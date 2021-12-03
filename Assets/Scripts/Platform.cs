@@ -17,7 +17,7 @@ public class Platform : MonoBehaviour
     private float loopTimer;
     private bool canMove;
 
-    [SerializeField] PlatformStats stats;
+    [SerializeField] private PlatformStats stats;
 
     private void Awake() 
     {
@@ -34,6 +34,8 @@ public class Platform : MonoBehaviour
     {
         horMoveSpeed = stats.XMoveSpeed;
         verMoveSpeed = stats.YMoveSpeed;
+        transform.localScale = new Vector3(stats.X, stats.Y, stats.Z);
+
         // loopDuration = stats.LoopDuration;
         // waitDuration = stats.WaitDuration;
         // stats.ForceBoost = stats.ForceBoost;
