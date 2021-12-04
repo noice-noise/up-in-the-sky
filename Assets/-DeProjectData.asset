@@ -13,12 +13,4 @@ MonoBehaviour:
   m_Name: -DeProjectData
   m_EditorClassIdentifier: 
   evidenceType: 0
-  customizedItems:
-  - guid: bb177fcc190d9f0448074fc63972a124
-    hColor: 4
-    icoType: 18
-    customColor: {r: 1, g: 1, b: 1, a: 1}
-    customIcon: {fileID: 0}
-    customIconOffsetX: 2
-    customIconOffsetY: 2
-    customIconMaxSize: 16
+  customizedItems: []
