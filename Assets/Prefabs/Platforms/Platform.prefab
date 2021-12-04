@@ -62,14 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16c0701400a9a741bae5edaa55f2ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horMoveSpeed: 0
-  verMoveSpeed: 0
-  looping: 0
-  loopDuration: 5
-  waitDuration: 2
-  duration: 0.5
-  ease: 3
-  offset: 0.5
+  stats: {fileID: 11400000, guid: 0d3c29b9572abbd41b0431140a03ed24, type: 2}
 --- !u!1 &7703225804845974692
 GameObject:
   m_ObjectHideFlags: 0

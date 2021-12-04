@@ -11,8 +11,10 @@ public class WorldGenerator : MonoBehaviour
     public GameObject[] platforms;
     [SerializeField] private int platformCount = 5;
 
-    [SerializeField] private float verticalOffset = 5f;
-    [SerializeField] private float horizontalOffset = 5f;
+    [SerializeField] private float yOffset = 5f;
+    [SerializeField] private float xOffset = 5f;
+
+    [SerializeField] private LevelGenData levelGenData;
 
     private void Update() 
     {
@@ -30,8 +32,8 @@ public class WorldGenerator : MonoBehaviour
 
         for (int i = 0; i < platformCount; i++)
         {
-            newPosition.y += verticalOffset;
-            newPosition.x = Random.Range(horizontalOffset, -horizontalOffset);
+            newPosition.y += yOffset;
+            newPosition.x = Random.Range(xOffset, -xOffset);
 
             GameObject p = platforms[Random.Range(0, platforms.Length)];
 
