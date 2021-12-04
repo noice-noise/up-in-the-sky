@@ -16,4 +16,7 @@ MonoBehaviour:
   platformsCount: 0
   yOffset: 0
   xOffset: 0
-  prefab: {fileID: 0}
+  platforms:
+  - {fileID: 7703225803391824518, guid: 4dbf5265206f43c46b9550b26356fd1d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}

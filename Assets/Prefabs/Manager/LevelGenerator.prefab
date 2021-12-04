@@ -45,9 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   triggerPoint: {fileID: 0}
-  triggerMoveDistance: 10
+  triggerMoveDistance: 20
   platforms:
-  - {fileID: 7703225803391824518, guid: 4262bd0d224e1d9419d7317129938623, type: 3}
-  platformCount: 10
-  verticalOffset: 6
-  horizontalOffset: 6
+  - {fileID: 7703225803391824518, guid: 4dbf5265206f43c46b9550b26356fd1d, type: 3}
+  platformCount: 20
+  yOffset: 5
+  xOffset: 5
+  levelGenData: {fileID: 0}
