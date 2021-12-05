@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canTilt;
     public bool isFalling;
     private bool doubleJumpKeyHeld;
-    public PlayerStats normalJump;
-    public PlayerStats boostedJump;
-    public PlayerStats pimpJump;
+    public PlayerJumpStats normalJump;
+    public PlayerJumpStats boostedJump;
+    public PlayerJumpStats pimpJump;
 
     [Header("Movement")]
     [SerializeField] private float maxXVelocity = 10f;

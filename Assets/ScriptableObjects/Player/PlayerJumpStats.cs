@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Jumping", menuName = "Player/PlayerStats", order = 0)]
-public class PlayerStats : ScriptableObject
+[CreateAssetMenu(fileName = "PlayerJumpStats", menuName = "Player/PlayerJumpStats", order = 0)]
+public class PlayerJumpStats : ScriptableObject
 {
     public float primaryJump;
     public float secondaryJump;
