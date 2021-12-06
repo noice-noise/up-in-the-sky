@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Jumping_Normal
   m_EditorClassIdentifier: 
   primaryJump: 23
-  secondaryJump: 13
+  secondaryJump: 14

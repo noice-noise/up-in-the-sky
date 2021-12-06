@@ -15,12 +15,12 @@ MonoBehaviour:
   x: 0.3
   y: 1
   z: 1
-  xMoveSpeed: 0
-  yMoveSpeed: 0
+  xMoveSpeed: 2
+  yMoveSpeed: 2
   forceBoost: 0
-  loopDuration: 0
-  waitDuration: 0
-  duration: 0
-  ease: 0
+  loopDuration: 2
+  waitDuration: 1
+  duration: 0.3
+  ease: 3
   xOffset: 0
-  yOffset: 0
+  yOffset: 0.5
