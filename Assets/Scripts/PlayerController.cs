@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody rb;
-    [SerializeField] private bool lockMouse = false;
+    private bool lockMouse = true;
     public ParticleSystem dust;
 
     [SerializeField] private Vector3 moveDirection;
@@ -17,16 +17,20 @@ public class PlayerController : MonoBehaviour
     [Header("Ground")]
     [SerializeField] private bool isGrounded;
     public Transform groundCheck;
-    [SerializeField] private float groundDistance = 0.3f;
+    [SerializeField] private float groundDistance = 0.2f;
     public LayerMask whatIsGround;
 
     [Header("Air")]
-    [SerializeField] private float jumpForce = 23f;
-    [SerializeField] private float secJumpForce = 13f;
+    private float primaryJumpForce;
+    private float secondaryJumpForce;
+
     private int prevJumpDirection = 1;
-    [SerializeField] private bool canTilt;
+    private bool canTilt = false;
     public bool isFalling;
     private bool doubleJumpKeyHeld;
+
+    [SerializeField] private bool canDoubleJump = true;
+    [SerializeField] private bool doubleJumping;
     public PlayerJumpStats normalJump;
     public PlayerJumpStats boostedJump;
     public PlayerJumpStats pimpJump;
@@ -50,14 +54,34 @@ public class PlayerController : MonoBehaviour
     {
         FreezeRotation();
         LockCursor();
+        primaryJumpForce = normalJump.primaryJump;
+        secondaryJumpForce = normalJump.secondaryJump;
     }
 
-    private void FixedUpdate() 
+    private void Update()
     {
         HandleInput();
         HandleGrounded();
+        HandleJumping();
         HandleMovement();
-        HandleRotation();
+        // HandleRotation();
+    }
+
+    private void HandleJumping()
+    {
+        HandlePrimaryJumping();
+        HandleSecondaryJumping();
+    }
+
+    private void LateUpdate()
+    {
+        if (doubleJumping)
+        {
+            Debug.Log("False");
+            doubleJumping = false;
+            PlaySecondaryJumpSpin();
+            PlayDust();  
+        } 
     }
 
     private void HandleRotation()
@@ -96,20 +120,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            jumpForce = boostedJump.primaryJump;
-            secJumpForce = boostedJump.secondaryJump;
+            primaryJumpForce = boostedJump.primaryJump;
+            secondaryJumpForce = boostedJump.secondaryJump;
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            jumpForce = normalJump.primaryJump;
-            secJumpForce = normalJump.secondaryJump;
+            primaryJumpForce = normalJump.primaryJump;
+            secondaryJumpForce = normalJump.secondaryJump;
         }
 
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            jumpForce = pimpJump.primaryJump;
-            secJumpForce = pimpJump.secondaryJump;
+            primaryJumpForce = pimpJump.primaryJump;
+            secondaryJumpForce = pimpJump.secondaryJump;
         }
     }
 
@@ -125,29 +149,43 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
         isFalling = Falling();
 
+        if (isGrounded)
+        {
+            canDoubleJump = true;
+        }
+    }
+
+    private void HandlePrimaryJumping()
+    {
         // auto jump if grounded and falling down
         if (isGrounded && isFalling)
         {
+            Debug.Log("Prime");
             // reset y-velocity to avoid inconsistencies before applying jump force
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * primaryJumpForce, ForceMode.Impulse);
             PlayJumpSpin();
-            PlayDust();
-        }
-
-        // double jump
-        if (!isGrounded && doubleJumpKeyHeld)
-        {
-            doubleJumpKeyHeld = false;
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(Vector3.up * secJumpForce, ForceMode.Impulse);
-            PlaySecondaryJumpSpin();
             PlayDust();
         }
     }
 
+    private void HandleSecondaryJumping()
+    {
+        if (!isGrounded && canDoubleJump && doubleJumpKeyHeld)
+        {
+            canDoubleJump = false;
+            doubleJumping = true;
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(Vector3.up * secondaryJumpForce, ForceMode.Impulse);
+        }
+
+        // reset key flag every function call
+        doubleJumpKeyHeld = false;
+    }
+
     private void PlayJumpSpin()
     {
+        Debug.Log("SpinBaby!");
         canTilt = false;
         Vector3 rot = new Vector3(0, 360, 0);
 
