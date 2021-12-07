@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
     {
         if (doubleJumping)
         {
-            Debug.Log("False");
             doubleJumping = false;
             PlaySecondaryJumpSpin();
             PlayDust();  
@@ -160,7 +159,6 @@ public class PlayerController : MonoBehaviour
         // auto jump if grounded and falling down
         if (isGrounded && isFalling)
         {
-            Debug.Log("Prime");
             // reset y-velocity to avoid inconsistencies before applying jump force
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * primaryJumpForce, ForceMode.Impulse);
@@ -185,7 +183,6 @@ public class PlayerController : MonoBehaviour
 
     private void PlayJumpSpin()
     {
-        Debug.Log("SpinBaby!");
         canTilt = false;
         Vector3 rot = new Vector3(0, 360, 0);
 
