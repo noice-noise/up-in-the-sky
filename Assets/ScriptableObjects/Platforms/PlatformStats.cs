@@ -15,6 +15,7 @@ public class PlatformStats : ScriptableObject
     [SerializeField] private float forceBoost;
 
     [Header("Looping")]
+    [SerializeField] private bool canLoopMovement;
     [SerializeField] private float loopDuration;
     [SerializeField] private float waitDuration;
 
@@ -36,4 +37,5 @@ public class PlatformStats : ScriptableObject
     public float X { get => x; }
     public float Y { get => y; }
     public float Z { get => z; }
+    public bool CanLoopMovement { get => canLoopMovement; }
 }
