@@ -13,11 +13,17 @@ public class Platform : MonoBehaviour
     private float horMoveSpeed = 0f;
     private float verMoveSpeed = 0f;
 
-    private bool looping;
+    private bool canLoopMovement;
     private float loopTimer;
     private bool canMove;
 
-    [SerializeField] private PlatformStats stats;
+    public int initialDirection;
+
+    [SerializeField] private PlatformType type;
+    private PlatformStats stats;
+
+    // public int InitialDirection { get => initialDirection; set => initialDirection = value; }
+    internal PlatformType Type { get => type; set => type = value; }
 
     private void Awake() 
     {
@@ -27,14 +33,22 @@ public class Platform : MonoBehaviour
 
     private void InitializePlatform()
     {
-        InitializeStats();
+        InitType();
+        InitStats();
     }
 
-    private void InitializeStats()
+    private void InitType()
     {
-        horMoveSpeed = stats.XMoveSpeed;
+        stats = LevelGenerator.Instance.GetPlatformStats(Type);
+    }
+
+    private void InitStats()
+    {
+        Debug.Log("init:" + initialDirection);
+        horMoveSpeed = stats.XMoveSpeed * initialDirection;
         verMoveSpeed = stats.YMoveSpeed;
         transform.localScale = new Vector3(stats.X, stats.Y, stats.Z);
+        canLoopMovement = stats.CanLoopMovement;
 
         // loopDuration = stats.LoopDuration;
         // waitDuration = stats.WaitDuration;
@@ -46,12 +60,12 @@ public class Platform : MonoBehaviour
 
     void Start() 
     {
-        RandomizeHorizontalMovementDirection();
+        // RandomizeHorizontalMovementDirection();
     }
 
     private void Update() 
     {
-        if (looping) LoopMovement();
+        if (canLoopMovement) LoopMovement();
     }
 
     private void FixedUpdate()
@@ -88,8 +102,16 @@ public class Platform : MonoBehaviour
     
     private void RandomizeHorizontalMovementDirection()
     {
-        int randomDirection = UnityEngine.Random.Range(-1, 1);
+        int randomDirection = 0;
+
+        do
+        {
+            randomDirection = UnityEngine.Random.Range(-1, 2);
+            Debug.Log(":" + randomDirection);
+        } while (randomDirection == 0);
+
         horMoveSpeed *= randomDirection;
+        Debug.Log(randomDirection);
     }
 
     private void OnTriggerEnter(Collider other) 
