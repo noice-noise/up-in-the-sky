@@ -4761,9 +4761,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7138293667792139681}
+  - component: {fileID: 1144443235}
   m_Layer: 8
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player Ground Check
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4782,6 +4783,19 @@ Transform:
   m_Father: {fileID: 7138293668028826905}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1144443235
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138293667792139682}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.64
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7138293668028826908
 GameObject:
   m_ObjectHideFlags: 0
@@ -4845,7 +4859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4c5ffbf281dba48bfa75207ddc44b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockMouse: 1
   dust: {fileID: 835188209}
   moveDirection: {x: 0, y: 0, z: 0}
   horizontal: 0
@@ -4855,9 +4868,12 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512
-  jumpForce: 23
-  canTilt: 0
-  secJumpForce: 13
+  isFalling: 0
+  canDoubleJump: 1
+  doubleJumping: 0
+  normalJump: {fileID: 11400000, guid: e4872588e7b9bc44a91f89663b8cc53d, type: 2}
+  boostedJump: {fileID: 11400000, guid: 32f3c47de72d4cb4996ec4a143b3c026, type: 2}
+  pimpJump: {fileID: 11400000, guid: 27f9f2012123e30459327759b0eef7d4, type: 2}
   maxXVelocity: 10
   maxYVelocity: 20
   controlForce: 60
