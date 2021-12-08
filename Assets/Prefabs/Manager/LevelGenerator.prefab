@@ -47,8 +47,12 @@ MonoBehaviour:
   triggerPoint: {fileID: 0}
   triggerMoveDistance: 20
   platforms:
+  - {fileID: 7703225803391824518, guid: 4262bd0d224e1d9419d7317129938623, type: 3}
   - {fileID: 7703225803391824518, guid: 4dbf5265206f43c46b9550b26356fd1d, type: 3}
   platformCount: 20
   yOffset: 5
   xOffset: 5
-  levelGenData: {fileID: 0}
+  levelGenData: {fileID: 11400000, guid: 070b4475989442543aa6631166569dfe, type: 2}
+  stillPlatfromStats: {fileID: 11400000, guid: 0d3c29b9572abbd41b0431140a03ed24, type: 2}
+  movingPlatfromStats: {fileID: 11400000, guid: 15c7e877fc67913449a5b9d91b3a4c5c,
+    type: 2}
