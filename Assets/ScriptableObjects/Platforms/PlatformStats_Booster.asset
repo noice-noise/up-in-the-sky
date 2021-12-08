@@ -17,7 +17,8 @@ MonoBehaviour:
   z: 1
   xMoveSpeed: 0
   yMoveSpeed: 0
-  forceBoost: 20
+  forceBoost: 1000
+  canLoopMovement: 0
   loopDuration: 0
   waitDuration: 0
   duration: 0

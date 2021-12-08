@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a56ed2355b3b48b69a97f69301862, type: 3}
   m_Name: PlatformStats_Static
   m_EditorClassIdentifier: 
-  x: 0.3
+  x: 0.7
   y: 1
   z: 1
   xMoveSpeed: 2
   yMoveSpeed: 2
   forceBoost: 0
+  canLoopMovement: 0
   loopDuration: 2
   waitDuration: 1
   duration: 0.3

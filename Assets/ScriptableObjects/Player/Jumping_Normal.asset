@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae5b0ed37b20364fa49a0b2105d8c2a, type: 3}
   m_Name: Jumping_Normal
   m_EditorClassIdentifier: 
-  primaryJump: 23
+  primaryJump: 26
   secondaryJump: 14
