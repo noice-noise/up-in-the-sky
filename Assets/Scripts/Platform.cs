@@ -126,10 +126,25 @@ public class Platform : MonoBehaviour
             PlayerController controller = other.GetComponentInParent<PlayerController>();
             if (controller.isFalling)
             {
-                Rigidbody rigid = other.GetComponentInParent<Rigidbody>();
-                rigid.AddForce(Vector3.up * stats.ForceBoost, ForceMode.Impulse);
-                PlaySteppedAnim();
+                HandlePlatformTrigger(other);
             }
+        }
+    }
+
+    private void HandlePlatformTrigger(Collider actor)
+    {
+        if (type == PlatformType.Fragile)
+        {
+            Debug.Log("Fragile");
+            Destroy(gameObject, 1f);
+            // DestroyImmediate(this);
+            // Destro
+        }
+        else
+        {
+            Rigidbody rigid = actor.GetComponentInParent<Rigidbody>();
+            rigid.AddForce(Vector3.up * stats.ForceBoost, ForceMode.Impulse);
+            PlaySteppedAnim();
         }
     }
 
