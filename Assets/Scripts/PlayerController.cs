@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private bool lockMouse = true;
     public ParticleSystem dust;
+    public Vector3 rbVelocity;
 
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private float horizontal;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private float secondaryJumpForce;
 
     private int prevJumpDirection = 1;
-    private bool canTilt = false;
+    [SerializeField] private bool allowTilting = true;
     public bool isFalling;
     private bool doubleJumpKeyHeld;
 
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         HandleGrounded();
         HandleJumping();
         HandleMovement();
+        rbVelocity = rb.velocity;
         // HandleRotation();
     }
 
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        if (canTilt)
+        if (allowTilting)
         {
             float zRotation = transform.eulerAngles.y;
             euler = transform.eulerAngles;
@@ -162,7 +164,7 @@ public class PlayerController : MonoBehaviour
             // reset y-velocity to avoid inconsistencies before applying jump force
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * primaryJumpForce, ForceMode.Impulse);
-            PlayJumpSpin();
+            // PlayJumpSpin();
             PlayDust();
         }
     }
@@ -183,7 +185,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayJumpSpin()
     {
-        canTilt = false;
+        allowTilting = false;
         Vector3 rot = new Vector3(0, 360, 0);
 
         float direction = horizontal == 0 ? prevJumpDirection : horizontal;
@@ -198,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlaySecondaryJumpSpin()
     {
-        canTilt = false;
+        allowTilting = false;
         Vector3 rot = new Vector3(0, 0, 360);
 
         // either 1 or -1
@@ -214,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
     private void allowTilt()
     {
-        canTilt = true;
+        allowTilting = true;
     }
 
     public void PlayDust()
