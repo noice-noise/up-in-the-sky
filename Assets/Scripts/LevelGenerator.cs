@@ -18,6 +18,9 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     [SerializeField] private PlatformStats stillPlatfromStats;
     [SerializeField] private PlatformStats movingPlatfromStats;
+    [SerializeField] private PlatformStats boosterPlatformStats;
+    [SerializeField] private PlatformStats fragilePlatformStats;
+
     private int platformDirection = 1;
 
     private void Update() 
@@ -37,6 +40,10 @@ public class LevelGenerator : Singleton<LevelGenerator>
                 return stillPlatfromStats;
             case PlatformType.Moving:
                 return movingPlatfromStats;
+            case PlatformType.Booster:
+                return boosterPlatformStats;
+            case PlatformType.Fragile:
+                return fragilePlatformStats;
             default:
                 Debug.LogError("Invalid PlatformType.");
                 return null;
