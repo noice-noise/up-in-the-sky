@@ -12,5 +12,6 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         txtScore.text = ((int) ScoreManager.Instance.CurrentScore).ToString();
+        // Application.logMessageReceived
     }
 }

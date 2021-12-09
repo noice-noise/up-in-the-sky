@@ -21,6 +21,8 @@ public class LevelGenerator : Singleton<LevelGenerator>
     [SerializeField] private PlatformStats boosterPlatformStats;
     [SerializeField] private PlatformStats fragilePlatformStats;
 
+    [SerializeField] private LevelDifficulty[] levels;
+
     private int platformDirection = 1;
 
     private void Update() 
