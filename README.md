@@ -1,2 +1,2 @@
 # UpInTheSky
- Simple Jumper Game made with Unity. Currently work in progress.
+ Vertical scrolling platformer made with Unity. Currently work in progress.
