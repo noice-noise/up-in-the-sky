@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LevelGenerator : Singleton<LevelGenerator>
 {
+
     public Transform playerTransform;
     public Transform triggerPoint;
     [SerializeField] private float triggerMoveDistance = 20f;
 
-    public GameObject[] platforms;
+    public List<GameObject> platforms;
     [SerializeField] private int platformCount = 5;
 
     [SerializeField] private float yOffset = 5f;
@@ -32,11 +33,18 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     private void HandleLevelGeneration()
     {
-        if (playerTransform.position.y > triggerPoint.position.y)
+        bool isPlayerAboveTriggerPoint = playerTransform.position.y > triggerPoint.position.y;
+
+        if (isPlayerAboveTriggerPoint)
         {
             Generate();
-            triggerPoint.position = new Vector3(triggerPoint.position.x, triggerPoint.position.y + triggerMoveDistance, transform.position.z);
+            MoveTriggerPoint();
         }
+    }
+
+    private void MoveTriggerPoint()
+    {
+        triggerPoint.position = new Vector3(triggerPoint.position.x, triggerPoint.position.y + triggerMoveDistance, transform.position.z);
     }
 
     public PlatformStats GetPlatformStats(PlatformType type)
@@ -66,7 +74,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
             newPosition.y += yOffset;
             newPosition.x = Random.Range(xOffset, -xOffset);
 
-            GameObject p = platforms[Random.Range(0, platforms.Length)];
+            GameObject p = platforms[Random.Range(0, platforms.Count)];
 
             if (p.CompareTag("Platform"))
             {
@@ -77,8 +85,15 @@ public class LevelGenerator : Singleton<LevelGenerator>
                     platformDirection *= -1;
                 }
             }
-            
-            Instantiate(p, newPosition, Quaternion.identity);
+
+            Quaternion targetAngle = Quaternion.identity;
+
+            // while (targetAngle.z % 90f == 0)
+            // {
+            //     targetAngle = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+            // }
+
+            Instantiate(p, newPosition, targetAngle);
             transform.position = newPosition;
 
         }
