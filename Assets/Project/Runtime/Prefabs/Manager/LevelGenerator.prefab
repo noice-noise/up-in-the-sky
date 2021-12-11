@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,16 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ad0c93fb7bafd41bbbd67f47876bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
   triggerPoint: {fileID: 0}
   triggerMoveDistance: 20
   platforms:
   - {fileID: 7703225803391824518, guid: 4262bd0d224e1d9419d7317129938623, type: 3}
   - {fileID: 7703225803391824518, guid: 4dbf5265206f43c46b9550b26356fd1d, type: 3}
-  platformCount: 20
-  yOffset: 5
-  xOffset: 5
-  levelGenData: {fileID: 11400000, guid: 070b4475989442543aa6631166569dfe, type: 2}
+  - {fileID: 7703225803391824518, guid: 86d175fa7c3869d4c86b8fa3605677c3, type: 3}
+  platformCount: 5
+  yOffset: 10
+  xOffset: 10
   stillPlatfromStats: {fileID: 11400000, guid: 0d3c29b9572abbd41b0431140a03ed24, type: 2}
   movingPlatfromStats: {fileID: 11400000, guid: 15c7e877fc67913449a5b9d91b3a4c5c,
+    type: 2}
+  boosterPlatformStats: {fileID: 11400000, guid: bf3d8303c3242774bb156eda2c9421af,
+    type: 2}
+  fragilePlatformStats: {fileID: 11400000, guid: 0d3c29b9572abbd41b0431140a03ed24,
     type: 2}

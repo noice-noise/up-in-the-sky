@@ -4774,7 +4774,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4934,7 +4933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4c5ffbf281dba48bfa75207ddc44b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
+  body: {fileID: 7138293668620153432}
   dust: {fileID: 835188209}
   rbVelocity: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
@@ -4944,21 +4943,21 @@ MonoBehaviour:
   groundDistance: 0.6
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 512
-  allowTilting: 1
+    m_Bits: 513
+  allowTilting: 0
   isFalling: 0
   canDoubleJump: 1
   doubleJumping: 0
-  baseJump: {fileID: 0}
+  baseJump: {fileID: 11400000, guid: a4b3fce713d47fd4c9796e524563af3d, type: 2}
   normalJump: {fileID: 11400000, guid: e4872588e7b9bc44a91f89663b8cc53d, type: 2}
   boostedJump: {fileID: 11400000, guid: 32f3c47de72d4cb4996ec4a143b3c026, type: 2}
   pimpJump: {fileID: 11400000, guid: 27f9f2012123e30459327759b0eef7d4, type: 2}
   maxXVelocity: 10
-  maxYVelocity: 20
-  controlForce: 60
+  maxYVelocity: 25
+  controlForce: 45
   euler: {x: 0, y: 0, z: 0}
   ease: 3
-  duration: 0.4
+  duration: 0.6
 --- !u!1 &7138293668620153433
 GameObject:
   m_ObjectHideFlags: 0
