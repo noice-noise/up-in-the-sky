@@ -7,6 +7,7 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
+    public Transform body;
     private Rigidbody rb;
     private bool lockMouse = true;
     public ParticleSystem dust;
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
         HandleJumping();
         HandleMovement();
         rbVelocity = rb.velocity;
-        // HandleRotation();
+        HandleRotation();
     }
 
     private void HandleJumping()
@@ -87,13 +88,14 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
+        // Transform body;
         if (allowTilting)
         {
-            float zRotation = transform.eulerAngles.y;
-            euler = transform.eulerAngles;
+            float zRotation = body.eulerAngles.y;
+            euler = body.eulerAngles;
             zRotation += horizontal * 20f;
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation, 
+            body.rotation = Quaternion.Slerp(
+                body.rotation, 
                 Quaternion.Euler(180f, rb.rotation.y, zRotation), 
                 5f * Time.deltaTime);
         }
@@ -164,7 +166,7 @@ public class PlayerController : MonoBehaviour
             // reset y-velocity to avoid inconsistencies before applying jump force
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * primaryJumpForce, ForceMode.Impulse);
-            // PlayJumpSpin();
+            PlayJumpSpin();
             PlayDust();
         }
     }
@@ -191,7 +193,7 @@ public class PlayerController : MonoBehaviour
         float direction = horizontal == 0 ? prevJumpDirection : horizontal;
         prevJumpDirection = (int) direction;
 
-        rb
+        body
         .DORotate(rot * direction, duration, RotateMode.FastBeyond360)
         .SetEase(ease)
         .SetRelative(true)
@@ -207,7 +209,7 @@ public class PlayerController : MonoBehaviour
         float direction = horizontal == 0 ? prevJumpDirection : horizontal;
         prevJumpDirection = (int) direction;
 
-        rb
+        body
         .DORotate(rot * direction, duration + 0.2f, RotateMode.FastBeyond360)
         .SetEase(ease)
         .SetRelative(true)
