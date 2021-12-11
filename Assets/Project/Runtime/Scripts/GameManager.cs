@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    private static GameManager instance;   // the singleton instance variable
 
     public Transform player;
     public Transform deadzone;
@@ -26,18 +25,4 @@ public class GameManager : MonoBehaviour
         deadzone.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime, Space.World);
         particleSystems.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime, Space.World);
     }
-
-    public static GameManager Instance 
-    { 
-        get 
-        {
-            if (instance == null)
-            {
-                instance = new GameManager();
-            } 
-            
-            return instance;
-        }
-    }
-
 }
