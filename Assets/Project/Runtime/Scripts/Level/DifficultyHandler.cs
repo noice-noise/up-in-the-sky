@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class DifficultyHandler : MonoBehaviour
 {
-    [SerializeField] private LevelDifficulty[] levels;
+    // [SerializeField] private LevelDifficulty[] levels;
+    [SerializeField] private DifficultyData difficultyData;
     private int baseDifficulty = 0;
     private int currentDifficulty;
 
@@ -24,7 +25,7 @@ public class DifficultyHandler : MonoBehaviour
     {
         if (!freezeDifficultyUpdate && IsRequirementsAchived(currentGameStateHeight))
         {
-            if (currentDifficulty + 1 < levels.Length)
+            if (currentDifficulty + 1 < difficultyData.Levels.Count)
             {
                 IncreaseDifficulty();
             }
@@ -38,7 +39,7 @@ public class DifficultyHandler : MonoBehaviour
 
     public bool IsRequirementsAchived(float criteriaValue)
     {
-        if (criteriaValue >= levels[CurrentDifficulty].heightRequirement)
+        if (criteriaValue >= difficultyData.Levels[currentDifficulty].heightRequirement)
         {
             return true;
         }
