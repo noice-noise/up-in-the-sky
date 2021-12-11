@@ -20,7 +20,9 @@ public class UIManager : MonoBehaviour
     {
         txtDebug.text 
             = "Current Position: " + GameManager.Instance.player.position
-            + ""
+            // + "Difficulty Level: " + 
+
+
             ;
     }
 }

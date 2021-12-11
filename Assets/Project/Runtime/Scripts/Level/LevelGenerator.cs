@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelGenerator : Singleton<LevelGenerator>
 {
 
-    public Transform playerTransform;
+    // public Transform playerTransform;
     public Transform triggerPoint;
     [SerializeField] private float triggerMoveDistance = 20f;
 
@@ -22,18 +22,24 @@ public class LevelGenerator : Singleton<LevelGenerator>
     [SerializeField] private PlatformStats boosterPlatformStats;
     [SerializeField] private PlatformStats fragilePlatformStats;
 
-    [SerializeField] private LevelDifficulty[] levels;
+    [SerializeField] private List<LevelDifficulty> levels;
 
     private int platformDirection = 1;
 
     private void Update() 
     {
+        HandleLevelDifficulty();
         HandleLevelGeneration();
+    }
+
+    private void HandleLevelDifficulty()
+    {
+
     }
 
     private void HandleLevelGeneration()
     {
-        bool isPlayerAboveTriggerPoint = playerTransform.position.y > triggerPoint.position.y;
+        bool isPlayerAboveTriggerPoint = GameManager.Instance.player.position.y > triggerPoint.position.y;
 
         if (isPlayerAboveTriggerPoint)
         {
