@@ -27,6 +27,11 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     private void Update() 
     {
+        HandleLevelGeneration();
+    }
+
+    private void HandleLevelGeneration()
+    {
         if (playerTransform.position.y > triggerPoint.position.y)
         {
             Generate();
@@ -34,7 +39,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         }
     }
 
-    internal PlatformStats GetPlatformStats(PlatformType type)
+    public PlatformStats GetPlatformStats(PlatformType type)
     {
         switch (type)
         {

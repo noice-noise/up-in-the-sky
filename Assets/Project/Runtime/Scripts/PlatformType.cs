@@ -1,4 +1,4 @@
-enum PlatformType
+public enum PlatformType
 {
     Still = 0,
     Moving = 1,

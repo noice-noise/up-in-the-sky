@@ -18,9 +18,11 @@ public class Platform : MonoBehaviour
     private bool canMove;
 
     public int initialDirection;
+    public bool ignoreDeadzone;
 
     [SerializeField] private PlatformType type;
     private PlatformStats stats;
+
 
     // public int InitialDirection { get => initialDirection; set => initialDirection = value; }
     internal PlatformType Type { get => type; set => type = value; }
@@ -114,20 +116,31 @@ public class Platform : MonoBehaviour
         Debug.Log(randomDirection);
     }
 
+    // TODO delegate destroying to deadzone object
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Deadzone"))
-        {
-            Destroy(gameObject);
-        }
+        HandleDestroy(other);
+        HandleTrigger(other);
+    }
 
+    private void HandleTrigger(Collider other)
+    {
         if (other.gameObject.CompareTag("Player Ground Check") )
         {
-            PlayerController controller = other.GetComponentInParent<PlayerController>();
-            if (controller.isFalling)
+            PlayerController player = other.GetComponentInParent<PlayerController>();
+            if (player.isFalling)
             {
                 HandlePlatformTrigger(other);
             }
+        }
+    }
+
+    private void HandleDestroy(Collider actor)
+    {
+        bool onDeadzoneLayer = actor.gameObject.layer == LayerMask.NameToLayer("Deadzone");
+        if (!ignoreDeadzone && onDeadzoneLayer)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -136,9 +149,7 @@ public class Platform : MonoBehaviour
         if (type == PlatformType.Fragile)
         {
             Debug.Log("Fragile");
-            Destroy(gameObject, 1f);
-            // DestroyImmediate(this);
-            // Destro
+            Destroy(gameObject, 0.5f);
         }
         else
         {
