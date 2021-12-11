@@ -67,11 +67,15 @@ public class LevelGenerator : Singleton<LevelGenerator>
             newPosition.x = Random.Range(xOffset, -xOffset);
 
             GameObject p = platforms[Random.Range(0, platforms.Length)];
-            var ps = p.GetComponent<Platform>();
-            if (ps.Type == PlatformType.Moving)
+
+            if (p.CompareTag("Platform"))
             {
-                ps.initialDirection = platformDirection;
-                platformDirection *= -1;
+                var ps = p.GetComponent<Platform>();
+                if (ps.Type == PlatformType.Moving)
+                {
+                    ps.initialDirection = platformDirection;
+                    platformDirection *= -1;
+                }
             }
             
             Instantiate(p, newPosition, Quaternion.identity);
