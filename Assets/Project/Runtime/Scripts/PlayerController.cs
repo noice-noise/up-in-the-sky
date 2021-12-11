@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool canDoubleJump = true;
     [SerializeField] private bool doubleJumping;
+
+    public PlayerJumpStats baseJump;
     public PlayerJumpStats normalJump;
     public PlayerJumpStats boostedJump;
     public PlayerJumpStats pimpJump;
@@ -56,8 +58,8 @@ public class PlayerController : MonoBehaviour
     {
         FreezeRotation();
         LockCursor();
-        primaryJumpForce = normalJump.primaryJump;
-        secondaryJumpForce = normalJump.secondaryJump;
+        primaryJumpForce = baseJump.primaryJump;
+        secondaryJumpForce = baseJump.secondaryJump;
     }
 
     private void Update()
@@ -123,20 +125,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            primaryJumpForce = boostedJump.primaryJump;
-            secondaryJumpForce = boostedJump.secondaryJump;
+            primaryJumpForce = baseJump.primaryJump + boostedJump.primaryJump;
+            secondaryJumpForce = baseJump.secondaryJump +  boostedJump.secondaryJump;
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            primaryJumpForce = normalJump.primaryJump;
-            secondaryJumpForce = normalJump.secondaryJump;
+            primaryJumpForce = baseJump.primaryJump + normalJump.primaryJump;
+            secondaryJumpForce = baseJump.secondaryJump +  normalJump.secondaryJump;
         }
 
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            primaryJumpForce = pimpJump.primaryJump;
-            secondaryJumpForce = pimpJump.secondaryJump;
+            primaryJumpForce = baseJump.primaryJump + pimpJump.primaryJump;
+            secondaryJumpForce = baseJump.secondaryJump + pimpJump.secondaryJump;
         }
     }
 
