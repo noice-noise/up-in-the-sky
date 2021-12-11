@@ -46,7 +46,6 @@ public class Platform : MonoBehaviour
 
     private void InitStats()
     {
-        Debug.Log("init:" + initialDirection);
         horMoveSpeed = stats.XMoveSpeed * initialDirection;
         verMoveSpeed = stats.YMoveSpeed;
         transform.localScale = new Vector3(stats.X, stats.Y, stats.Z);
@@ -148,7 +147,6 @@ public class Platform : MonoBehaviour
     {
         if (type == PlatformType.Fragile)
         {
-            Debug.Log("Fragile");
             Destroy(gameObject, 0.5f);
         }
         else

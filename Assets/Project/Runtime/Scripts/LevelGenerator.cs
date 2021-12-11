@@ -70,9 +70,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
             var ps = p.GetComponent<Platform>();
             if (ps.Type == PlatformType.Moving)
             {
-                // p.GetComponent<Platform>().InitialDirection = platformDirection;
                 ps.initialDirection = platformDirection;
-                Debug.Log("PD: " + platformDirection);
                 platformDirection *= -1;
             }
             
