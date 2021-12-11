@@ -1299,13 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064603224ccf25d489092ab0813de650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels:
-  - name: 
-    heightRequirement: 0
-  - name: 
-    heightRequirement: 50
-  - name: 
-    heightRequirement: 100
+  difficultyData: {fileID: 11400000, guid: 4a56f6126cdd87349b699bc41b871df0, type: 2}
   freezeDifficultyUpdate: 0
 --- !u!114 &769608125
 MonoBehaviour:
