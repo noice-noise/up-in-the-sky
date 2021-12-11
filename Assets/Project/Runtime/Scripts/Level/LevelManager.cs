@@ -2,17 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private DifficultyHandler difficultyHandler;
+    [SerializeField] private LevelGenerator levelGenerator;
+    
+    public float currentPlayerPosition;
+
+
+    public DifficultyHandler DifficultyHandler
     {
-        
+        get { return difficultyHandler; }
+        set
+        {
+            difficultyHandler = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public LevelGenerator LevelGenerator
     {
-        
+        get { return levelGenerator; }
+        set
+        {
+            levelGenerator = value;
+        }
     }
+
+
+    private void Update()
+    {
+        currentPlayerPosition = GameManager.Instance.player.position.y;
+
+        levelGenerator.HandleLevelGeneration();
+        difficultyHandler.HandleDifficulty(currentPlayerPosition);
+    }
+
 }

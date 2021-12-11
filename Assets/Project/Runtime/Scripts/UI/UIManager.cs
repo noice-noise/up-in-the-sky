@@ -8,21 +8,12 @@ public class UIManager : MonoBehaviour
 {
     // refactor to scoremanager
     [SerializeField] private TextMeshProUGUI txtScore;
-    [SerializeField] private TextMeshProUGUI txtDebug;
+
 
     private void Update()
     {
         txtScore.text = ((int) ScoreManager.Instance.CurrentScore).ToString();
-        DisplayDebugOverlay();
     }
 
-    private void DisplayDebugOverlay()
-    {
-        txtDebug.text 
-            = "Current Position: " + GameManager.Instance.player.position
-            // + "Difficulty Level: " + 
 
-
-            ;
-    }
 }

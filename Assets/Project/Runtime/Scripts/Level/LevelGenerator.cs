@@ -15,31 +15,16 @@ public class LevelGenerator : Singleton<LevelGenerator>
     [SerializeField] private float yOffset = 5f;
     [SerializeField] private float xOffset = 5f;
 
-    [SerializeField] private LevelGenData levelGenData;
-
     [SerializeField] private PlatformStats stillPlatfromStats;
     [SerializeField] private PlatformStats movingPlatfromStats;
     [SerializeField] private PlatformStats boosterPlatformStats;
     [SerializeField] private PlatformStats fragilePlatformStats;
 
-    [SerializeField] private List<LevelDifficulty> levels;
-
     private int platformDirection = 1;
 
-    private void Update() 
+    public void HandleLevelGeneration()
     {
-        HandleLevelDifficulty();
-        HandleLevelGeneration();
-    }
-
-    private void HandleLevelDifficulty()
-    {
-
-    }
-
-    private void HandleLevelGeneration()
-    {
-        bool isPlayerAboveTriggerPoint = GameManager.Instance.player.position.y > triggerPoint.position.y;
+        bool isPlayerAboveTriggerPoint = LevelManager.Instance.currentPlayerPosition > triggerPoint.position.y;
 
         if (isPlayerAboveTriggerPoint)
         {
@@ -71,7 +56,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         }
     }
 
-    public void Generate()
+    private void Generate()
     {
         Vector3 newPosition = transform.position;
 
@@ -84,7 +69,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
             if (p.CompareTag("Platform"))
             {
-                var ps = p.GetComponent<Platform>();
+                var ps = p.GetComponent<PlatformController>();
                 if (ps.Type == PlatformType.Moving)
                 {
                     ps.initialDirection = platformDirection;

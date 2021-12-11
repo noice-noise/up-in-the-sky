@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Platform : MonoBehaviour
+public class PlatformController : MonoBehaviour
 {
 
     private Rigidbody rb;
