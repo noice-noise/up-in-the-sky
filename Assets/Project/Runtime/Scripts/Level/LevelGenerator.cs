@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGenerator : Singleton<LevelGenerator>
+public class LevelGenerator : MonoSingleton<LevelGenerator>
 {
 
     // public Transform playerTransform;
@@ -15,10 +15,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
     [SerializeField] private float yOffset = 5f;
     [SerializeField] private float xOffset = 5f;
 
-    [SerializeField] private PlatformStats stillPlatfromStats;
-    [SerializeField] private PlatformStats movingPlatfromStats;
-    [SerializeField] private PlatformStats boosterPlatformStats;
-    [SerializeField] private PlatformStats fragilePlatformStats;
+
 
     private int platformDirection = 1;
 
@@ -36,24 +33,6 @@ public class LevelGenerator : Singleton<LevelGenerator>
     private void MoveTriggerPoint()
     {
         triggerPoint.position = new Vector3(triggerPoint.position.x, triggerPoint.position.y + triggerMoveDistance, transform.position.z);
-    }
-
-    public PlatformStats GetPlatformStats(PlatformType type)
-    {
-        switch (type)
-        {
-            case PlatformType.Still:
-                return stillPlatfromStats;
-            case PlatformType.Moving:
-                return movingPlatfromStats;
-            case PlatformType.Booster:
-                return boosterPlatformStats;
-            case PlatformType.Fragile:
-                return fragilePlatformStats;
-            default:
-                Debug.LogError("Invalid PlatformType.");
-                return null;
-        }
     }
 
     private void Generate()
