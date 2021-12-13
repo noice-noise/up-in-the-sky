@@ -7,6 +7,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     [SerializeField] private DifficultyHandler difficultyHandler;
     [SerializeField] private LevelGenerator levelGenerator;
+    [SerializeField] private LevelDataContainer levelDataContainer;
     
     public float currentPlayerPosition;
 
@@ -29,6 +30,14 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
     }
 
+    public LevelDataContainer LevelDataContainer
+    {
+        get { return levelDataContainer; }
+        set
+        {
+            levelDataContainer = value;
+        }
+    }
 
     private void Update()
     {
