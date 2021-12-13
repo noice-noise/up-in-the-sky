@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77c34d83077cfa4f9087bea85ce5b7b, type: 3}
   m_Name: LevelDataContainer
   m_EditorClassIdentifier: 
-  stillPlatfromStats: {fileID: 0}
-  movingPlatfromStats: {fileID: 0}
-  boosterPlatformStats: {fileID: 0}
-  fragilePlatformStats: {fileID: 0}
+  stillPlatfromStats: {fileID: 11400000, guid: 0d3c29b9572abbd41b0431140a03ed24, type: 2}
+  movingPlatfromStats: {fileID: 11400000, guid: 15c7e877fc67913449a5b9d91b3a4c5c,
+    type: 2}
+  boosterPlatformStats: {fileID: 11400000, guid: bf3d8303c3242774bb156eda2c9421af,
+    type: 2}
+  fragilePlatformStats: {fileID: 11400000, guid: 0d3c29b9572abbd41b0431140a03ed24,
+    type: 2}
