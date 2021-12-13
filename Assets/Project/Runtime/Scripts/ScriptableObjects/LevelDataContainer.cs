@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CreateAssetMenu(fileName = "LevelDataContainer", menuName = "UpInTheSky/LevelDataContainer", order = 0)]
-public class LevelDataContainer : ScriptableSingleton<LevelDataContainer>
+public class LevelDataContainer : ScriptableObject
 {
     // TODO refactor these into extendable scriptable object enums
     [SerializeField] private PlatformStats stillPlatfromStats;
