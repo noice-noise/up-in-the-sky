@@ -41,7 +41,7 @@ public class PlatformController : MonoBehaviour
 
     private void InitType()
     {
-        stats = LevelGenerator.Instance.GetPlatformStats(Type);
+        stats = LevelManager.Instance.LevelDataContainer.GetPlatformStats(type);
     }
 
     private void InitStats()
@@ -50,13 +50,6 @@ public class PlatformController : MonoBehaviour
         verMoveSpeed = stats.YMoveSpeed;
         transform.localScale = new Vector3(stats.X, stats.Y, stats.Z);
         canLoopMovement = stats.CanLoopMovement;
-
-        // loopDuration = stats.LoopDuration;
-        // waitDuration = stats.WaitDuration;
-        // stats.ForceBoost = stats.ForceBoost;
-        // stats.Duration = stats.Duration;
-        // stats.Ease = stats.Ease;
-        // stats.YOffset = stats.YOffset;
     }
 
     void Start() 
