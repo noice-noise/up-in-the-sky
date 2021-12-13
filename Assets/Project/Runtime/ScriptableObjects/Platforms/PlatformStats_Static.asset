@@ -15,8 +15,8 @@ MonoBehaviour:
   x: 0.7
   y: 1
   z: 1
-  xMoveSpeed: 2
-  yMoveSpeed: 2
+  xMoveSpeed: 0
+  yMoveSpeed: 0
   forceBoost: 0
   canLoopMovement: 0
   loopDuration: 2
