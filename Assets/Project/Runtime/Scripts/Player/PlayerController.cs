@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         LockCursor();
         primaryJumpForce = baseJump.primaryJump;
         secondaryJumpForce = baseJump.secondaryJump;
+        maxYVelocity = baseJump.primaryJump;
     }
 
     private void Update()
