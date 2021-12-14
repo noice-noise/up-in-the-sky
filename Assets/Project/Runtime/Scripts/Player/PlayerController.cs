@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool allowTilting = true;
     public bool isFalling;
     private bool doubleJumpKeyHeld;
+    private bool allowVelocityClamping = true;
 
     [SerializeField] private bool canDoubleJump = true;
     [SerializeField] private bool doubleJumping;
@@ -49,6 +50,8 @@ public class PlayerController : MonoBehaviour
     public Ease ease;
     public float duration;
 
+    public bool AllowVelocityClamping { get => allowVelocityClamping; set => allowVelocityClamping = value; }
+
     private void Awake() 
     {
         rb = GetComponent<Rigidbody>();
@@ -66,11 +69,17 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleInput();
+        HandleFalling();
         HandleGrounded();
         HandleJumping();
         HandleMovement();
-        rbVelocity = rb.velocity;
         HandleRotation();
+        rbVelocity = rb.velocity;
+    }
+
+    private void HandleFalling()
+    {
+        isFalling = Falling();
     }
 
     private void HandleJumping()
@@ -91,7 +100,6 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        // Transform body;
         if (allowTilting)
         {
             float zRotation = body.eulerAngles.y;
@@ -145,15 +153,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-        ClampVelocity();
+        HandleMovementClamping();
+
         moveDirection = new Vector3(horizontal, 0f, 0f);
         rb.AddForce(moveDirection * controlForce, ForceMode.Acceleration);
+    }
+
+    private void HandleMovementClamping()
+    {
+        if (allowVelocityClamping)
+        {
+            ClampVelocity();
+        }
     }
 
     private void HandleGrounded()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
-        isFalling = Falling();
 
         if (isGrounded)
         {
