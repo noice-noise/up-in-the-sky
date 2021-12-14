@@ -51,17 +51,12 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
                 var ps = p.GetComponent<PlatformController>();
                 if (ps.Type == PlatformType.Moving)
                 {
-                    ps.initialDirection = platformDirection;
+                    ps.InitialDirection = platformDirection;
                     platformDirection *= -1;
                 }
             }
 
             Quaternion targetAngle = Quaternion.identity;
-
-            // while (targetAngle.z % 90f == 0)
-            // {
-            //     targetAngle = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-            // }
 
             Instantiate(p, newPosition, targetAngle);
             transform.position = newPosition;
