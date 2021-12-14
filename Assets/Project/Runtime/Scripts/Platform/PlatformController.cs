@@ -17,15 +17,17 @@ public class PlatformController : MonoBehaviour
     private float loopTimer;
     private bool canMove;
 
-    public int initialDirection;
-    public bool ignoreDeadzone;
+    private int initialDirection;
+    [SerializeField] private bool ignoreDeadzone;
 
     [SerializeField] private PlatformType type;
     private PlatformStats stats;
 
 
-    // public int InitialDirection { get => initialDirection; set => initialDirection = value; }
+    public int InitialDirection { get => initialDirection; set => initialDirection = value; }
+    public bool IgnoreDeadzone { get => ignoreDeadzone; set => ignoreDeadzone = value; }
     internal PlatformType Type { get => type; set => type = value; }
+
 
     private void Awake() 
     {
@@ -108,7 +110,6 @@ public class PlatformController : MonoBehaviour
         Debug.Log(randomDirection);
     }
 
-    // TODO delegate destroying to deadzone object
     private void OnTriggerEnter(Collider other) 
     {
         HandleDestroy(other);
@@ -130,13 +131,13 @@ public class PlatformController : MonoBehaviour
     private void HandleDestroy(Collider actor)
     {
         bool onDeadzoneLayer = actor.gameObject.layer == LayerMask.NameToLayer("Deadzone");
-        if (!ignoreDeadzone && onDeadzoneLayer)
+        if (!IgnoreDeadzone && onDeadzoneLayer)
         {
             Destroy(gameObject);
         }
     }
 
-    private void HandlePlatformTrigger(Collider actor)
+    private void HandlePlatformTrigger(Collider other)
     {
         if (type == PlatformType.Fragile)
         {
@@ -144,7 +145,7 @@ public class PlatformController : MonoBehaviour
         }
         else
         {
-            Rigidbody rigid = actor.GetComponentInParent<Rigidbody>();
+            Rigidbody rigid = other.GetComponentInParent<Rigidbody>();
             rigid.AddForce(Vector3.up * stats.ForceBoost, ForceMode.Impulse);
             PlaySteppedAnim();
         }
